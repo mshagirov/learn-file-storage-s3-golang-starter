@@ -6,6 +6,11 @@ import (
 	"os/exec"
 )
 
+// NOTE: plain mp4 have single resolutiona & bitrate, and might not be
+//			 suitable for adaptive or live streaming.
+// Adaptive streaming: "HLS" and "MPEG-DASH"
+// Live streaming: "WebRTC", "RTMP"
+
 type videoAspectRatio struct {
 	Streams []struct {
 		Width              int    `json:"width"`
