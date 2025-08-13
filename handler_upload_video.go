@@ -110,10 +110,8 @@ func (cfg *apiConfig) handlerUploadVideo(w http.ResponseWriter, r *http.Request)
 		respondWithError(w, http.StatusBadRequest, "Error putting object to s3 bucket", err)
 		return
 	}
-
-	videoURL := fmt.Sprintf("https://%v.s3.%v.amazonaws.com/%v",
-		cfg.s3Bucket,
-		cfg.s3Region,
+	videoURL := fmt.Sprintf("https://%v/%v",
+		cfg.s3CfDistribution,
 		fileKey)
 	videoMetaData.VideoURL = &videoURL
 	if err := cfg.db.UpdateVideo(videoMetaData); err != nil {
